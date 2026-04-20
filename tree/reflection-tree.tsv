@@ -1,0 +1,32 @@
+id	parentId	type	text	options	target	signal
+START	null	start	Good evening. Let's reflect on your day.			
+A1_Q1	START	question	How would you describe your day?	Productive|Tough|Mixed|Frustrating		
+A1_D1	A1_Q1	decision		answer=Productive|Mixed:A1_Q2_HIGH;answer=Tough|Frustrating:A1_Q2_LOW		
+A1_Q2_HIGH	A1_D1	question	When things went well, what made it happen?	I prepared well|I adapted quickly|Team support|Luck		axis1:internal
+A1_Q2_LOW	A1_D1	question	When things got difficult, what was your first instinct?	Tried to control what I could|Waited for help|Felt stuck|Blamed situation		axis1:external
+A1_Q3	A1_Q2_HIGH	question	When something didn't go as expected, what did you do next?	Adjusted approach|Asked for input|Ignored it|Waited it out		axis1:internal
+A1_Q3B	A1_Q2_LOW	question	When something didn't go as expected, what did you do next?	Tried to adjust|Waited for others|Avoided it|Complained		axis1:external
+A1_R1	A1_Q3	reflection	You actively shaped your outcomes today. Even small adjustments show ownership.			axis1:internal
+A1_R2	A1_Q3B	reflection	It felt like things were happening around you. Noticing small choices can bring back control.			axis1:external
+B1	A1_R1	bridge	Now let's shift from control to contribution.		A2_Q1	
+B2	A1_R2	bridge	Now let's shift from control to contribution.		A2_Q1	
+A2_Q1	null	question	Think of one moment today. What best describes your behavior?	Helped without being asked|Did what was required|Expected recognition|Felt others should do more		
+A2_D1	A2_Q1	decision		answer=Helped without being asked:A2_Q2_HIGH;answer=Did what was required|Expected recognition|Felt others should do more:A2_Q2_LOW		
+A2_Q2_HIGH	A2_D1	question	Why did you choose to help?	Wanted team success|Felt responsible|It felt right|Had time		axis2:contribution
+A2_Q2_LOW	A2_D1	question	What was your main focus?	Finishing my work|Getting recognition|Avoiding extra effort|Waiting on others		axis2:entitlement
+A2_Q3	A2_Q2_HIGH	question	How often did you go beyond your role today?	Multiple times|Once|Rarely|Not at all		axis2:contribution
+A2_Q3B	A2_Q2_LOW	question	How did you react when others needed help?	I helped|I waited|I ignored|I felt it wasn't my job		axis2:entitlement
+A2_R1	A2_Q3	reflection	You leaned toward contribution today. These actions build trust and long-term value.			axis2:contribution
+A2_R2	A2_Q3B	reflection	Your focus stayed on your own role or expectations. Notice where small contributions could shift outcomes.			axis2:entitlement
+B3	A2_R1	bridge	Now let's expand perspective beyond yourself.		A3_Q1	
+B4	A2_R2	bridge	Now let's expand perspective beyond yourself.		A3_Q1	
+A3_Q1	null	question	When you think about your day, who comes to mind first?	Myself|My team|A colleague|Customer		
+A3_D1	A3_Q1	decision		answer=Myself:A3_Q2_LOW;answer=My team|A colleague|Customer:A3_Q2_HIGH		
+A3_Q2_HIGH	A3_D1	question	How did others influence your actions today?	I supported them|I collaborated|I adapted for them|I considered their needs		axis3:others
+A3_Q2_LOW	A3_D1	question	What was your main concern today?	My workload|My stress|My deadlines|My performance		axis3:self
+A3_Q3	A3_Q2_HIGH	question	Whose outcome mattered most in your decisions?	Team success|Colleague support|Customer impact|Shared goals		axis3:others
+A3_Q3B	A3_Q2_LOW	question	Did you consider how others were affected?	Yes a little|Not really|Only when needed|No		axis3:self
+A3_R1	A3_Q3	reflection	You looked beyond yourself today. This broader perspective creates meaning and stronger connections.			axis3:others
+A3_R2	A3_Q3B	reflection	Your focus stayed mostly on your own challenges. Expanding perspective can reduce pressure and improve outcomes.			axis3:self
+SUMMARY	A3_R1	summary	You described your day as '{A1_Q1.answer}'. You responded by '{A1_Q2_HIGH.answer}'. You focused on '{A2_Q1.answer}' and thought about '{A3_Q1.answer}'. This reflects how you approached control, contribution, and perspective today.			
+END	SUMMARY	end	Reflection complete. See you tomorrow.			
