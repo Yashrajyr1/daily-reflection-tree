@@ -1,0 +1,19 @@
+# Documentation Folder
+
+This folder contains supporting documents that explain the design and usage of the reflection system.
+
+## Files
+
+* `write-up.md`
+  Explains the design rationale, psychological foundations, and structure of the reflection tree.
+
+* `reference-guide.txt`
+  Provides a technical guide to understand the file formats, node types, and how to view the files.
+
+## Purpose
+
+This folder helps reviewers understand:
+
+* The thinking behind the design
+* How the system works
+* How to navigate and interpret the files
