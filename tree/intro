@@ -1,0 +1,16 @@
+# Tree Folder
+
+This folder contains the core structure of the deterministic reflection system.
+
+## Files
+
+* `reflection-tree.tsv`
+  The main decision tree represented as structured data.
+  Each row defines a node, including questions, decisions, reflections, and transitions.
+
+* `tree-diagram.md`
+  A visual representation of the decision tree using a Mermaid flowchart.
+
+## Purpose
+
+This folder represents the **actual product logic** — a fully deterministic tree that guides user reflection without any AI at runtime.
