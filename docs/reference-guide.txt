@@ -1,0 +1,230 @@
+REFLECTION TREE – REFERENCE GUIDE
+
+----------------------------------------
+1. FILE PURPOSE
+----------------------------------------
+This file explains the structure and codes used in the reflection-tree.tsv file.
+
+The TSV file represents a deterministic decision tree where:
+- Each row = one step (node)
+- The system moves step-by-step based on user choices
+
+----------------------------------------
+2. NODE ID NAMING CONVENTION
+----------------------------------------
+
+Each node ID follows this pattern:
+
+A1_Q1
+A1_D1
+A1_R1
+
+Where:
+
+A1 = Axis 1 (Locus of Control)
+A2 = Axis 2 (Contribution vs Entitlement)
+A3 = Axis 3 (Self vs Others)
+
+Q = Question node
+D = Decision node
+R = Reflection node
+B = Bridge node
+
+Examples:
+
+START   → Beginning of session
+A1_Q1   → Axis 1, Question 1
+A1_D1   → Axis 1, Decision node
+A1_R1   → Axis 1, Reflection
+B1      → Bridge to next axis
+SUMMARY → Final summary
+END     → End of session
+
+----------------------------------------
+3. AXES EXPLANATION
+----------------------------------------
+
+AXIS 1: LOCUS OF CONTROL
+- Internal (Victor mindset)
+  → “I influenced what happened”
+- External (Victim mindset)
+  → “Things happened to me”
+
+Signal values:
+axis1:internal
+axis1:external
+
+----------------------------------------
+
+AXIS 2: ORIENTATION
+- Contribution
+  → Focus on giving, helping, adding value
+- Entitlement
+  → Focus on receiving, expecting, recognition
+
+Signal values:
+axis2:contribution
+axis2:entitlement
+
+----------------------------------------
+
+AXIS 3: RADIUS OF CONCERN
+- Self-focused
+  → Thinking only about personal outcomes
+- Others-focused
+  → Thinking about team, colleagues, customers
+
+Signal values:
+axis3:self
+axis3:others
+
+----------------------------------------
+4. TSV COLUMN EXPLANATION
+----------------------------------------
+
+Each row in TSV contains:
+
+1. id
+   Unique identifier for the node
+
+2. parentId
+   Previous node (defines flow)
+
+3. type
+   Type of node:
+   - start
+   - question
+   - decision
+   - reflection
+   - bridge
+   - summary
+   - end
+
+4. text
+   What the user sees
+
+5. options
+   Fixed choices (for question nodes)
+   Format:
+   option1|option2|option3
+
+6. target
+   Used in bridge nodes to jump to next node
+
+7. signal
+   Tracks user behavior (used for analysis)
+
+----------------------------------------
+5. DECISION NODE LOGIC
+----------------------------------------
+
+Decision nodes route based on previous answer.
+
+Example:
+
+answer=Productive|Mixed:A1_Q2_HIGH;
+answer=Tough|Frustrating:A1_Q2_LOW
+
+Meaning:
+- If answer = Productive or Mixed → go to HIGH path
+- If answer = Tough or Frustrating → go to LOW path
+
+----------------------------------------
+6. SIGNAL USAGE
+----------------------------------------
+
+Signals track user tendencies.
+
+Example:
+axis1:internal → user shows ownership
+axis2:contribution → user shows helping behavior
+
+These can be used later in summary or analysis.
+
+----------------------------------------
+7. OVERALL FLOW
+----------------------------------------
+
+START
+→ Axis 1 (Control)
+→ Bridge
+→ Axis 2 (Contribution)
+→ Bridge
+→ Axis 3 (Perspective)
+→ Summary
+→ End
+
+----------------------------------------
+8. KEY DESIGN PRINCIPLES
+----------------------------------------
+
+- Deterministic (same input → same output)
+- No AI or randomness at runtime
+- Fixed options only
+- Non-judgmental tone
+- Progressive reflection across axes
+
+
+----------------------------------------
+9. HOW TO VIEW FILES (IMPORTANT)
+----------------------------------------
+
+This project contains different file formats. Follow below steps to view them properly.
+
+----------------------------------------
+A. TSV FILE (reflection-tree.tsv)
+----------------------------------------
+
+Purpose:
+- Contains the full decision tree structure
+
+How to open:
+1. Open with Excel → Best view (tabular format)
+2. Open with VS Code / Notepad → Raw structure
+
+----------------------------------------
+B. MARKDOWN FILES (.md)
+----------------------------------------
+
+Files:
+- tree-diagram.md
+- write-up.md
+
+How to open:
+1. Open in VS Code
+2. Press:
+   Ctrl + Shift + V
+   → Opens Markdown Preview
+
+----------------------------------------
+C. MERMAID DIAGRAM (tree-diagram.md)----------Needs extension in VS code
+----------------------------------------
+
+To render the diagram properly:
+
+Requirement:
+- Install VS Code extension:
+  "Markdown Preview Enhanced"
+  OR
+  "Markdown Preview Mermaid Support"
+
+Steps:
+1. Open tree-diagram.md
+2. Right-click → Open Preview (or Ctrl + Shift + V)
+3. Diagram will render as flowchart
+
+If not working:
+- Ensure file extension is ".md"
+- Ensure code block uses ```mermaid
+
+----------------------------------------
+D. FILE FORMATS NOTE
+----------------------------------------
+
+- .tsv and .md are text-based files
+- They may appear as plain text in basic editors
+- Proper tools (Excel / VS Code) improve readability
+
+----------------------------------------
+END OF GUIDE
+----------------------------------------
